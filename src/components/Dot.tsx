@@ -32,7 +32,7 @@ export const Dot = ({
         alignItems: "end",
         height: `${height}px`,
         width: "fit-content",
-        marginBottom: "20px",
+        marginBottom: `${height / 12.5}px`,
     } as React.CSSProperties;
 
     return (

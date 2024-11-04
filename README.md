@@ -1,4 +1,4 @@
-# React 7-Segment Display
+# React 7-Segment Display Plus
 
 A React component that simulates a 7-segment display.
 
@@ -8,7 +8,7 @@ A React component that simulates a 7-segment display.
 
 ### Installation
 
-`npm install react-7-segment-display`
+`npm install react-7-segment-display-plus`
 
 ### Adding the component to your project
 
@@ -33,7 +33,7 @@ export default App;
 
 ### Valid values for `value`
 
-You can dislay a number in decimal or hexadecimal, giving its value by a number or a string.
+You can display a number in decimal or hexadecimal, giving its value by a number or a string.
 
 ![Display demo](./assets/Display_hex.gif)
 
