@@ -1,5 +1,6 @@
 import { Digit } from "./Digit";
 import React, { useEffect, useState } from "react";
+import { Dot } from "./Dot";
 
 type DisplayType = {
     count: number;
@@ -19,6 +20,7 @@ export const Display = ({
     skew = false,
 }: DisplayType) => {
     const [digits, setDigits] = useState([]);
+    const [dotIndex, setDotIndex] = useState(-1);
 
     const style = {
         display: "flex",
@@ -43,19 +45,24 @@ export const Display = ({
     } as React.CSSProperties;
 
     useEffect(() => {
-        let newDigits = value && value.toString().split("");
+        const dotIndex = value ? value.toString().indexOf(".") - 1 : -1;
+        const newValue =
+            dotIndex > -1 ? value.toString().replace(".", "") : value;
 
-        if (!value || count < value.toString().length) {
+        let newDigits = newValue && newValue.toString().split("");
+
+        if (!newValue || count < newValue.toString().length) {
             newDigits = null;
         }
 
-        if (value && count > value.toString().length) {
-            for (let i = 0; i < count - value.toString().length; i++) {
+        if (newValue && count > newValue.toString().length) {
+            for (let i = 0; i < count - newValue.toString().length; i++) {
                 newDigits.unshift("0");
             }
         }
 
         setDigits(newDigits);
+        setDotIndex(dotIndex);
     }, [count, value]);
 
     return (
@@ -64,24 +71,42 @@ export const Display = ({
                 {digits
                     ? digits.map((digit, index) => {
                           return (
-                              <Digit
-                                  key={index}
-                                  char={digit}
-                                  height={height}
-                                  color={color}
-                                  skew={skew}
-                              />
+                              <>
+                                  <Digit
+                                      key={index}
+                                      char={digit}
+                                      height={height}
+                                      color={color}
+                                      skew={skew}
+                                  />
+                                  <Dot
+                                      key={index}
+                                      active={index === dotIndex}
+                                      color={color}
+                                      height={height}
+                                      skew={skew}
+                                  />
+                              </>
                           );
                       })
                     : Array.from(Array(count).keys()).map((index) => {
                           return (
-                              <Digit
-                                  key={index}
-                                  char="-"
-                                  height={height}
-                                  color={color}
-                                  skew={skew}
-                              />
+                              <>
+                                  <Digit
+                                      key={index}
+                                      char="-"
+                                      height={height}
+                                      color={color}
+                                      skew={skew}
+                                  />
+                                  <Dot
+                                      key={index}
+                                      active={false}
+                                      color={color}
+                                      height={height}
+                                      skew={skew}
+                                  />
+                              </>
                           );
                       })}
             </div>
