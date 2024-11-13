@@ -45,7 +45,7 @@ export const Display = ({
     } as React.CSSProperties;
 
     useEffect(() => {
-        const dotIndex = value ? value.toString().indexOf(".") - 1 : -1;
+        let dotIndex = value ? value.toString().indexOf(".") - 1 : -1;
         const newValue =
             dotIndex > -1 ? value.toString().replace(".", "") : value;
 
@@ -58,6 +58,7 @@ export const Display = ({
         if (newValue && count > newValue.toString().length) {
             for (let i = 0; i < count - newValue.toString().length; i++) {
                 newDigits.unshift("0");
+                dotIndex++;
             }
         }
 
