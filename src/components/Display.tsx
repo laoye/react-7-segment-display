@@ -74,14 +74,14 @@ export const Display = ({
                           return (
                               <>
                                   <Digit
-                                      key={index}
+                                      key={`digit-${index}`}
                                       char={digit}
                                       height={height}
                                       color={color}
                                       skew={skew}
                                   />
                                   <Dot
-                                      key={index}
+                                      key={`dot-${index}`}
                                       active={index === dotIndex}
                                       color={color}
                                       height={height}
@@ -94,14 +94,14 @@ export const Display = ({
                           return (
                               <>
                                   <Digit
-                                      key={index}
+                                      key={`digit-${index}`}
                                       char="-"
                                       height={height}
                                       color={color}
                                       skew={skew}
                                   />
                                   <Dot
-                                      key={index}
+                                      key={`dot-${index}`}
                                       active={false}
                                       color={color}
                                       height={height}
