@@ -58,12 +58,11 @@ export const Display = ({
         if (newValue && count > newValue.toString().length) {
             for (let i = 0; i < count - newValue.toString().length; i++) {
                 newDigits.unshift("0");
-                dotIndex++;
             }
         }
 
         setDigits(newDigits);
-        setDotIndex(dotIndex);
+        setDotIndex(dotIndex > -1 ? dotIndex + count - newValue.toString().length : -1);
     }, [count, value]);
 
     return (
